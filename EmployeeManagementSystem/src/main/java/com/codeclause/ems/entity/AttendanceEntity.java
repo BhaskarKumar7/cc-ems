@@ -1,11 +1,9 @@
 package com.codeclause.ems.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.codeclause.ems.constants.AppConstants;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,11 +27,14 @@ public class AttendanceEntity extends TimeStampEntity {
 	sequenceName = "seq_attendance_entity",name = "attendance_entity_seq_generator")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "attendance_entity_seq_generator")
 	private Long attendanceId;
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "employee_id")
 	private EmployeeEntity employee;
 	private LocalDate selectedDate;
-	private Integer noOfHours;
-	private LocalDateTime inTime;
-	private LocalDateTime outTime;
+	private Double noOfHours;
+	private Integer inTimeHours;
+	private Integer inTimeMinutes;
+	private Integer outTimeHours;
+	private Integer outTimeMinutes;
+	private Boolean isDeleted;
 }

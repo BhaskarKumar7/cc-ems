@@ -72,6 +72,14 @@ public class EMSExceptionHandler {
 		return new ResponseEntity<>(responseMap,HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(value = InvalidInputException.class)
+	public ResponseEntity<Map<String, String>> handleInvalidInputException(InvalidInputException ie) {
+		log.error("input is invalid-----> {}",ie);
+		Map<String,String> responseMap = new HashMap<>();
+		responseMap.put(MESSAGE, ie.getMessage());
+		return new ResponseEntity<>(responseMap,HttpStatus.BAD_REQUEST);
+	}
+	
 	@ExceptionHandler(value = PayrollAlreadyAddedException.class)
 	public ResponseEntity<Map<String, String>> handlePayrollAlreadyAddedException(PayrollAlreadyAddedException ie) {
 		log.error("payroll already created-----> {}",ie);
